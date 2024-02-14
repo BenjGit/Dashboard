@@ -1,0 +1,26 @@
+.link {
+    padding: 15px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 24px;
+    margin: auto;
+  }
+  
+  .home-logo {
+    width: 178px;
+    height: 61px;
+    margin-left: 28px;
+  }
+  
+  .nav-container {
+    padding: 20px 0px 10px 0px;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+  }
+
+
+  
+
+  

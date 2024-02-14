@@ -1,0 +1,35 @@
+.vl-menu-container {
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-items:center;
+    justify-content:space-evenly;
+    height:  calc(100vh - 138px);
+    padding: 20px;
+}
+.img-containers{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 20px;
+}
+
+.img-container{
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+     gap: 20px;
+}
+
+.img-container img {
+    margin: 0;
+    width: 32px;
+    height: 32px;
+}
+
+.text-container{
+    color: #fff;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+}
