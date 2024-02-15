@@ -7,6 +7,7 @@ import './style.css'
 
 function VleftMenu() {
     return (
+        <aside className="vl-menu">
         <nav className="vl-menu-container">
             <div className="img-containers">
                 <div className="img-container">
@@ -26,6 +27,7 @@ function VleftMenu() {
                 <span className="copyright">Copyright, SportSee 2020</span>
             </div> 
         </nav>
+        </aside>
     )
 }
 

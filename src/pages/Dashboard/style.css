@@ -1,0 +1,20 @@
+.nutrition-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: 39px;
+}
+
+.welcome-txt {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.objectif-txt {
+    margin-bottom: 77px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.firstname {
+    color: #FF0101;
+}

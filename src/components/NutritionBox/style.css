@@ -1,0 +1,42 @@
+.box-container {
+    display: flex;
+    justify-content: center;
+    background-color:#FBFBFB;
+    width:258px;
+    height:124px;
+}
+
+.icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    width: 60px;
+    height: 60px;
+    background-color: #FBEAEA;
+}
+
+.icon {
+    width: 20px;
+}
+
+.info-container{
+    gap: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.content{
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.weight{
+    font-weight: 700;
+    font-size: 20px;
+}
+.text {
+    font-size: 14px;
+}
