@@ -18,3 +18,76 @@
 .firstname {
     color: #FF0101;
 }
+
+.dayli-activity {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding: 20px;
+    width: fit-content;
+    background-color: #FBFBFB;
+}
+
+.legend-color {
+    color: #74798C;
+}
+
+.main-content {
+    display: flex;
+    gap: 31px;
+}
+
+.diagrams-container {
+    display:flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.activity-title {
+    margin: 0;
+    width: fit-content;
+    font-size: 15px;
+    color: #20253A;
+    text-align: left;
+    font-weight: 500;
+}
+
+.score {
+   font-size:26px;
+   font-weight: 700;
+   fill: #282D30;
+}
+
+.d-container {
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pie-container {
+    position: relative;
+    background-color: #FBFBFB;
+}
+
+.radar-container {
+    background-color: #282D30;
+}
+
+.line-container{
+    background-color: #FF0000
+}
+
+.circle {
+    height: 140px;
+    width: 140px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-block;
+    transform: translate(-50%, -50%);
+}
+
