@@ -4,6 +4,7 @@
     background-color:#FBFBFB;
     width:258px;
     height:124px;
+    border-radius: 5px;
 }
 
 .icon-container{
@@ -39,4 +40,14 @@
 }
 .text {
     font-size: 14px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .box-container {
+        width:188px;
+        height:114px;
+    }
+    .weight {
+        font-size: 18px;
+    }
 }

@@ -13,7 +13,9 @@
   }
   
   .nav-container {
-    position: relative;
+    position:fixed;
+    z-index: 999;
+    top: 0;
     width: 100%;
     padding: 20px 0px 10px 0px;
     background-color: #000;
@@ -22,6 +24,15 @@
     justify-content: space-around;
   }
 
+  @media only screen and (max-width: 1024px) {
+    .home-logo {
+      width: 168px;
+    height: 51px;
+    }
+    .link {
+      font-size: 20px;
+    }
+  }
 
   
 

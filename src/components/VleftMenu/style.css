@@ -4,6 +4,7 @@
 
 .vl-menu-container {
     left: 0;
+    top: 0;
     position: fixed;
     background-color: #000;
     display: flex;
@@ -11,7 +12,7 @@
     width:auto;
     align-items:center;
     justify-content:space-evenly;
-    height:  calc(100vh - 131px);
+    height:  100vh;
     padding: 20px;
 }
 .img-containers{
