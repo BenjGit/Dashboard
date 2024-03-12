@@ -13,7 +13,7 @@ import useUserData from "../../useUserData";
 
 function Dashboard() {
   const { userData, changeUser, changeDataSource } = useUserData();
-  const [loading, setLoading] = useState(true); // État de chargement initial
+  const [loading, setLoading] = useState(true); 
   const [mousePosition, setMousePosition] = useState({ x: null});
   const [showOverlay, setShowOverlay] = useState(false);
 
@@ -30,12 +30,12 @@ function Dashboard() {
 
   const handleMouseMove = (e) => {
     if (e) {
-      setMousePosition({ x: e.chartX});
-      setShowOverlay(true);
+      setMousePosition({ x: e.chartX}); // récupérer la position x de ma souris
+      setShowOverlay(true); //afficher l'overlay
     }
   };
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = () => { // Enlever l'overlay quand je sort du graphique
     setShowOverlay(false);
   };
 
@@ -43,7 +43,7 @@ function Dashboard() {
     changeUser(userId); // Changer l'utilisateur en utilisant la fonction changeUser
   };
 
-  const handleDataSourceToggle = () => {
+  const handleDataSourceToggle = () => { // Changer les données de source
     if (userData.source === 'mocked') {
       changeDataSource('api');
     } else {
@@ -78,11 +78,11 @@ function Dashboard() {
         <div className="diagrams-container">
           <div className="dayli-activity">
             <h1 className="activity-title">Activité quotidienne</h1>
-            <BarChart  backgroundColor="#FBFBFB" width={795} height={265} data={userData.sessions}>
+            <BarChart backgroundColor="#FBFBFB" width={795} height={265} data={userData.sessions}>
               <CartesianGrid strokeDasharray="3 3" vertical={false}/>
               <XAxis tickFormatter={(value) => value + 1  }/>
               <YAxis hide={true} yAxisId="left" orientation="left" />
-              <YAxis   domain={[minKg-2, maxKg+2]} yAxisId="right" orientation="right" />
+              <YAxis domain={[minKg-2, maxKg+2]} yAxisId="right" orientation="right" />
               <Legend iconType="circle" iconSize={8} formatter={(value) => <span className="legend-color">{value}</span>} 
               verticalAlign="top" align="right" wrapperStyle={{ position: 'absolute', top: '-17px', fontSize: '14px'}} />
               <Tooltip formatter={(value, name) => {
@@ -92,7 +92,7 @@ function Dashboard() {
               contentStyle={{ backgroundColor: '#E60000',border: 'none' }} /* Couleur du fond */
               />
               <Bar yAxisId="right" name="Poids (kg)" dataKey="kilogram" fill="#282D30" barSize={10} radius={[5, 5, 0, 0]} />
-              <Bar  yAxisId="left" name="Calories brûlées (kCal)" dataKey="calories" fill="#E60000" barSize={10} radius={[5, 5, 0, 0]} />
+              <Bar yAxisId="left" name="Calories brûlées (kCal)" dataKey="calories" fill="#E60000" barSize={10} radius={[5, 5, 0, 0]} />
             </BarChart>
           </div>
           <div className="d-container">
@@ -134,9 +134,10 @@ function Dashboard() {
               </RadarChart>
             </div>
             <div className="pie-container">
-              <span className="circle"></span>
+              <span className="circle"></span> {/* Mon cercle blanc du milieu*/}
               <PieChart width={258} height={263}>
-                <Pie  data={[{ todayScore: userData.todayScore }]}dataKey="todayScore" cx="50%" cy="50%" innerRadius={75} labelLine={false} startAngle={90} outerRadius={88} cornerRadius={10} endAngle={90 + 360 * userData.todayScore} fill="#FF0101" >
+                <Pie  data={[{ todayScore: userData.todayScore }]}dataKey="todayScore" cx="50%" cy="50%" innerRadius={75} labelLine={false} startAngle={90} 
+                outerRadius={88} cornerRadius={10} endAngle={90 + 360 * userData.todayScore} fill="#FF0101" >
                 <Label className='score' value={`${(userData.todayScore * 100).toFixed(0)}%`} position="center" dy={-20}/>
                 <Label value="de votre" position="center" dy={10} />
                 <Label value="objectif" position="center" dy={30} />
