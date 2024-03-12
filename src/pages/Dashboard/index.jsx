@@ -10,23 +10,35 @@ import apple from '../../assets/apple.svg';
 import { useState, useEffect } from "react";
 import './style.css'
 import useUserData from "../../useUserData";
+import Modal from 'react-modal';
 
 function Dashboard() {
-  const { userData, changeUser, changeDataSource } = useUserData();
+  const { userData, changeUser, changeDataSource, error } = useUserData();
   const [loading, setLoading] = useState(true); 
   const [mousePosition, setMousePosition] = useState({ x: null});
   const [showOverlay, setShowOverlay] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   useEffect(() => {
-    console.log(userData)
+    console.log(userData);
     if (userData) {
-      setLoading(false); 
+      setLoading(false);
     }
-  }, [userData]);
+    
+    if (error) {
+      setShowErrorModal(true);
+    }
+  }, [userData, error]);
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
+     
   }
+
+const handleCloseErrorModal = () => {
+  setShowErrorModal(false);
+};
+
 
   const handleMouseMove = (e) => {
     if (e) {
@@ -44,11 +56,18 @@ function Dashboard() {
   };
 
   const handleDataSourceToggle = () => { // Changer les données de source
+    setLoading(true);
+
     if (userData.source === 'mocked') {
       changeDataSource('api');
     } else {
       changeDataSource('mocked');
     }
+  };
+
+  const handleLoadMockData = () => {
+    changeDataSource('mocked');
+    setShowErrorModal(false); // Fermer la modale après avoir chargé les données mockées
   };
 
   const [minKg, maxKg] = userData.sessions.reduce((acc, session) => {
@@ -135,13 +154,13 @@ function Dashboard() {
             </div>
             <div className="pie-container">
               <span className="circle"></span> {/* Mon cercle blanc du milieu*/}
+              <span className="score-txt">Score</span>
               <PieChart width={258} height={263}>
                 <Pie  data={[{ todayScore: userData.todayScore }]}dataKey="todayScore" cx="50%" cy="50%" innerRadius={75} labelLine={false} startAngle={90} 
                 outerRadius={88} cornerRadius={10} endAngle={90 + 360 * userData.todayScore} fill="#FF0101" >
                 <Label className='score' value={`${(userData.todayScore * 100).toFixed(0)}%`} position="center" dy={-20}/>
                 <Label value="de votre" position="center" dy={10} />
                 <Label value="objectif" position="center" dy={30} />
-                <Label className="labelScore" value="Score" fill="#00000" dy={-30} dx={-30}/>
                 </Pie>
               </PieChart>
             </div>
@@ -179,6 +198,32 @@ function Dashboard() {
           />
         </div>
       </div>
+      <Modal
+        isOpen={showErrorModal}
+        onRequestClose={handleCloseErrorModal}
+        contentLabel="Erreur lors du chargement des données de l'API"
+        style={{
+          content: {
+            width: '500px', 
+            height: '77px', 
+            margin: 'auto',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }
+        }}
+      >
+        <div className="error-message">
+          Une erreur s'est produite lors du chargement des données de l'API. Veuillez réessayer plus tard.
+        </div>
+        <div>
+          <button className="close-modal" onClick={handleCloseErrorModal}>X</button>
+          {userData && userData.source !== 'mocked' && (
+            <button className="load-mocked-btn" onClick={handleLoadMockData}>Charger les données mockées</button>
+          )}
+        </div>
+      </Modal>
     </div>
   );
 }

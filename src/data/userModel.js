@@ -6,6 +6,7 @@ const UserModel = () => {
     const [data, setData] = useState([]);
     const [selectedUserId, setSelectedUserId] = useState(12); // ID de l'utilisateur sélectionné par défaut
     const [dataSource, setDataSource] = useState('mocked');
+    const [error, setError] = useState(null); // Ajout d'un état pour stocker les erreurs
 
     const changeSelectedUserId = (userId) => {
         setSelectedUserId(userId);
@@ -54,8 +55,10 @@ const UserModel = () => {
                 console.error('Invalid data source:', source);
             }
             setDataSource(source);
+            setError(null);
         } catch (error) {
             console.error('Error toggling data source:', error);
+            setError(error);
         }
     };
 
@@ -97,7 +100,7 @@ const UserModel = () => {
         return normalizedData;
     };
 
-    return { data, toggleDataSource, changeSelectedUserId };
+    return { data, toggleDataSource, changeSelectedUserId, error };
 };
 
 export default UserModel;

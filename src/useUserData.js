@@ -1,7 +1,7 @@
 import UserModel from "./data/userModel";
 
 function useUserData() {
-  const { data, toggleDataSource, changeSelectedUserId } = UserModel();
+  const { data, toggleDataSource, changeSelectedUserId, error } = UserModel();
 
   // Fonction pour changer l'utilisateur
   const changeUser = (userId) => {
@@ -13,7 +13,7 @@ function useUserData() {
     toggleDataSource(source);
   };
 
-  return { userData: data, changeUser, changeDataSource };
+  return { userData: data, changeUser, changeDataSource, error };
 }
 
 export default useUserData;
