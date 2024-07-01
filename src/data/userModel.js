@@ -45,11 +45,13 @@ const UserModel = () => {
                     console.error('Mocked data not found for user ID:', selectedUserId);
                 }
             } else if (source === 'api') {
-                const userData = await fetchDataFromApi(selectedUserId);
-                const activityData = await fetchDataFromActivityApi(selectedUserId);
-                const averageSessionsData = await fetchDataFromAverageSessionsApi(selectedUserId);
-                const performanceData = await fetchDataFromPerformanceApi(selectedUserId);
-                const newData = normalizeApiData(userData, activityData, averageSessionsData, performanceData);
+                const apiData = await Promise.all([
+                    fetchDataFromApi(selectedUserId),
+                    fetchDataFromActivityApi(selectedUserId),
+                    fetchDataFromAverageSessionsApi(selectedUserId),
+                    fetchDataFromPerformanceApi(selectedUserId)
+                ]);
+                const newData = normalizeApiData(apiData);
                 setData(newData);
             } else {
                 console.error('Invalid data source:', source);
@@ -66,7 +68,9 @@ const UserModel = () => {
         toggleDataSource(dataSource); // mettre les données mockées par défaut
     }, [selectedUserId]);
 
-    const normalizeApiData = (userData, activityData, averageSessionsData, performanceData) => {
+    const normalizeApiData = (apiData) => {
+        const [userData, activityData, averageSessionsData, performanceData] = apiData;
+
         const normalizedData = {
             // Données de l'API
             id: userData.data.id,
